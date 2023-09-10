@@ -6,8 +6,7 @@ namespace WeatherApp.Models
 	public class Weather
 	{
 		[JsonProperty("name")]
-
-		public string City { get; set; }
+		public string? City { get; set; }
 		[JsonProperty("main")]
 		public WeatherData Data { get; set; }
     }
@@ -15,6 +14,6 @@ namespace WeatherApp.Models
 	public class WeatherData
 	{
 		[JsonProperty("temp")]
-		public string Temperature { get; set; }
+		public double Temperature { get; set; }
 	}
 }

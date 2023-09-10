@@ -5,7 +5,7 @@ namespace WeatherApp.Services
 {
 	public static class WeatherFetcher
 	{
-		public static async Task<string> GetCurrentWeather(string city)
+		public static async Task<Weather> GetCurrentWeather(string city)
 		{
 			var client = new HttpClient();
 
@@ -16,8 +16,19 @@ namespace WeatherApp.Services
 			var response =  await client.SendAsync(request);
 			string responseBody = await response.Content.ReadAsStringAsync();
 			Weather currentWeather = JsonConvert.DeserializeObject<Weather>(responseBody);
-			return responseBody;
+			return currentWeather;
 		}
-
+		public static Weather GetTestWeather(string city)
+		{
+			Weather weather = new Weather
+			{
+				City = city,
+				Data = new WeatherData
+				{
+					Temperature = 15
+				}
+			};
+			return weather;
+		}
 	}
 }
