@@ -1,8 +1,20 @@
-﻿namespace WeatherApp.Models
+﻿using Newtonsoft.Json;
+using System.Diagnostics.Contracts;
+
+namespace WeatherApp.Models
 {
 	public class Weather
 	{
-        public string City { get; }
-		public int Temperature { get; }
+		[JsonProperty("name")]
+
+		public string City { get; set; }
+		[JsonProperty("main")]
+		public WeatherData Data { get; set; }
     }
+
+	public class WeatherData
+	{
+		[JsonProperty("temp")]
+		public string Temperature { get; set; }
+	}
 }

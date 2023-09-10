@@ -4,9 +4,10 @@ namespace Test
 {
 	internal class Program
 	{
-		static void Main(string[] args)
+		static async Task Main()
 		{
-			WeatherFetcher.GetWeather(0);
+			string resp = await WeatherFetcher.GetCurrentWeather("Minsk");
+			
 		}
 	}
 }
