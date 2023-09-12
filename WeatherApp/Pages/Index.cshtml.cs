@@ -7,13 +7,11 @@ namespace WeatherApp.Pages
 {
     public class IndexModel : PageModel
     {
-        public Weather? Weather { get; set; }//= WeatherFetcher.GetTestWeather("Minsk");
+        public Weather? Weather { get; set; }
         public async Task OnGetAsync()
         {
 
             Weather = await WeatherFetcher.GetCurrentWeather("Minsk");
-            //ViewData["Message"] = Weather.City;
-            //Weather = WeatherFetcher.GetTestWeather("Minsk");
         }
     }
 }

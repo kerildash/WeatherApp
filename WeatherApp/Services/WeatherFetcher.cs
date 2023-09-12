@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Reflection.Metadata.Ecma335;
 using WeatherApp.Models;
 
 namespace WeatherApp.Services
@@ -8,9 +9,7 @@ namespace WeatherApp.Services
 		public static async Task<Weather> GetCurrentWeather(string city)
 		{
 			var client = new HttpClient();
-
-			
-			string key = "239f9e0170beb6be6282c54b590ff0e8";
+			string key = GetApiKey();
 			using var request = new HttpRequestMessage(HttpMethod.Get, $"https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={key}");
 
 			var response =  await client.SendAsync(request);
@@ -29,6 +28,28 @@ namespace WeatherApp.Services
 				}
 			};
 			return weather;
+		}
+
+		private static string GetApiKey(string variableName = "WEATHER_API_KEY")
+		{
+			try
+			{
+				string key = Environment.GetEnvironmentVariable(variableName);
+				if (key is null)
+				{
+					throw new NullReferenceException(
+						$"null is received at attempt to get the value of {variableName} system variable.");
+				}
+				else
+				{
+					return key;
+				}
+			}
+			catch 
+			{
+				throw;
+			}
+
 		}
 	}
 }

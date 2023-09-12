@@ -6,7 +6,6 @@ namespace Test
 	{
 		static async Task Main()
 		{
-			string resp = await WeatherFetcher.GetCurrentWeather("Minsk");
 			
 		}
 	}
